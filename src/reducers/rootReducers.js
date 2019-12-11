@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
-//  import index from './index';
+import * as rtReducer from './index';
+import * as rtSkill from './skillReducer';
+
 
 const rootReducer = combineReducers({
-//    index,
+  ...rtReducer,
+  ...rtSkill,
 });
 
 export default rootReducer;

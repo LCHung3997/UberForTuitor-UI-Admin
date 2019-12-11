@@ -2,9 +2,16 @@ import Swal from 'sweetalert2';
 import API from '../service/api';
 import history from '../history';
 
-export const adminLoginRequest = (gmail, password) => dispatch => {
+export const login = () => ({
+  type: 'IS_LOGIN',
+});
+export const noLogin = () => ({
+  type: 'DONT_LOGIN',
+});
+
+export const adminLoginRequest = (gmail, password) => (dispatch) =>
   // dispatch({ type: 'LOGIN_FETCHING' });
-  return fetch(API.LOGIN, {
+   fetch(API.LOGIN, {
     method: 'POST',
     body: JSON.stringify({ gmail, password }),
     headers: {
@@ -12,27 +19,24 @@ export const adminLoginRequest = (gmail, password) => dispatch => {
       'Content-Type': 'application/json'
     }
   })
-    .then(response => response.json())
-    .then(res => {
-      console.log('res login', res);
+    .then((response) => response.json())
+    .then((res) => {
       // eslint-disable-next-line no-prototype-builtins
       if (res.hasOwnProperty('token')) {
         // Swal.fire('Thông báo', 'Thành công', 'success');
         localStorage.setItem('token', res.token);
-        history.push('/admin/create-admin');
+        history.push('/');
+        window.location.reload();
       } else {
         // dispatch({ type: 'LOGIN_COMPLETED' });
         Swal.fire('Thông báo', 'Không thành công', 'error');
         localStorage.removeItem('token');
       }
     })
-    .catch(error => {
+    .catch((error) => {
       throw error;
     });
-};
-
-export const adminCreateAccount = (name, gmail, password) => dispatch => {
-  return (
+export const adminCreateAccount = (name, gmail, password) => (dispatch) => (
     fetch(API.REGISTER, {
       method: 'POST',
       headers: {
@@ -45,14 +49,17 @@ export const adminCreateAccount = (name, gmail, password) => dispatch => {
         password
       })
     })
-      .then(respond => {
-        console.log('Respond:', respond);
-        Swal.fire('Thông báo', 'Thành công', 'success');
+      .then((respond) => respond.json())
+      .then((data) => {
+        if (data) {
+          Swal.fire('Thông báo', 'Thành công', 'success');
+        } else {
+          Swal.fire('Thông báo', 'Không thành công', 'error');
+        }
       })
       // .then((status) => dispatch(userProfile(name, gmail, categoryUser)))
-      .catch(err =>  Swal.fire('Thông báo', 'Không thành công', 'error'))
+      .catch((err) => Swal.fire('Thông báo', 'Không thành công', 'error'))
   );
-};
 
 // export const registerRequest = (
 // 	name,

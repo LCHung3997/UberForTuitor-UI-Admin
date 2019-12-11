@@ -1,36 +1,37 @@
-import React from "react";
-import { Container, Form } from "react-bootstrap";
+import React from 'react';
+import { Container, Form } from 'react-bootstrap';
 
-import "./AdminSignUp.css";
+import './AdminSignUp.css';
 
 export class AdminCreate extends React.PureComponent {
-  onSubmitSignUpForm = async e => {
+  onSubmitSignUpForm = async (e) => {
     e.preventDefault();
     const { adminCreateAccount } = this.props;
-    const gmail = document.getElementById("gmail").value;
-    const password = document.getElementById("password").value;
-    const name = document.getElementById("name").value;
+    const gmail = document.getElementById('gmail').value;
+    const password = document.getElementById('password').value;
+    const name = document.getElementById('name').value;
     await adminCreateAccount(name, gmail, password);
 
-    document.getElementById("gmail").value = "";
-    document.getElementById("password").value = "";
-    document.getElementById("re-password").value = "";
-    document.getElementById("name").value = "";
+    document.getElementById('gmail').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('re-password').value = '';
+    document.getElementById('name').value = '';
   };
 
   render() {
     return (
-      <div className="adminSignUp" style={{ marginTop: "4rem" }}>
-        <Container>
+      <div className="adminSignUp inner-block" style={{ padding: '2em 2em 2em 1em' }}>
+        <Container className="my-container">
           <div
             style={{
-              backgroundColor: "rgba(0,0,0,0.3)",
-              borderRadius: "20px",
-              paddingBottom: "3rem"
+              // border: "1px dashed black",
+              // backgroundColor: "rgba(0,0,0,0.3)",
+              borderRadius: '20px',
+              paddingBottom: '3rem'
             }}
           >
-            <h3 className="w3layouts-heading white-title mb-4">
-              <span>Đăng Ký</span>
+            <h3 className="w3layouts-heading black-title mb-4">
+              <span>Tạo tài  khoản quản trị viên</span>
             </h3>
             <div className="w3-agile_mail_grids justify-center">
               <div className="col-md-7 w3-agile_mail_grid_right">
@@ -40,7 +41,7 @@ export class AdminCreate extends React.PureComponent {
                   onSubmit={this.onSubmitSignUpForm}
                   className="signupForm"
                 >
-                  <div className="col-md-12 col-sm-12 ">
+                  <div className="col-md-12 col-sm-12 mb-2 ">
                     <input
                       type="text"
                       id="name"
@@ -50,7 +51,7 @@ export class AdminCreate extends React.PureComponent {
                   </div>
 
                   <br />
-                  <div className="col-md-12 col-sm-12 mb-4">
+                  <div className="col-md-12 col-sm-12 mb-2">
                     <input
                       type="email"
                       id="gmail"
@@ -58,7 +59,7 @@ export class AdminCreate extends React.PureComponent {
                       required=""
                     />
                   </div>
-                  <div className="col-md-12 col-sm-12 contact_left_grid mb-4">
+                  <div className="col-md-12 col-sm-12 contact_left_grid mb-2">
                     <input
                       type="password"
                       id="password"
@@ -80,8 +81,8 @@ export class AdminCreate extends React.PureComponent {
                     value="Đăng ký"
                     className="signUpSubmit"
                     style={{
-                      textAlign: "center",
-                      transform: "translateX(50%)"
+                      textAlign: 'center',
+                      transform: 'translateX(50%)'
                     }}
                   />
                 </Form>
