@@ -37,13 +37,12 @@ class detailsUser extends React.PureComponent {
     const id = path[path.length - 1];
     const { updateStateAccount } = this.props;
     updateStateAccount(id, document.getElementById('status').value).then((rs) => {
-      Swal.fire('Thông báo', 'Thành công', 'Cập  nhật thông tin thành công');
+      Swal.fire('Thông báo', 'Cập  nhật thông tin thành công, thông báo đã được gửi đến gmail của chủ tài khoản');
     });
   };
 
   render() {
     const { detailUser, getAddress, getDistrict } = this.props;
-    console.log('000000000000000000000000', detailUser.introduce);
     return (
       <div className="inner-block">
         <Container className="my-container">

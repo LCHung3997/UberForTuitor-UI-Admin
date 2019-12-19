@@ -11,6 +11,12 @@ import Teacher from './containers/ManageTeacherContainer';
 import DetailsUser from './containers/DetailUserContainer';
 import ListSkill from './containers/ManageSkillContainer';
 import PageNotFound from './components/PageNotFound';
+import listContract from './containers/ContractContainer';
+import DetailContract from './containers/detailContractContainer';
+import ChangePassword from './containers/changePasswContainer';
+import ForgotPassw from './containers/forgotPasswordContainer';
+import ManageComplaint from './containers/ManageComplaintContainer';
+
 
 import './App.css';
 
@@ -36,6 +42,12 @@ export class App extends React.PureComponent {
                     <Route path="/manage-teacher" exact component={Teacher} />
                     <Route path="/manage-admin" exact component={CreateAccountContainer} />
                     <Route path="/manage-skills" exact component={ListSkill} />
+                    <Route path="/manage-contract" exact component={listContract} />
+                    <Route path="/change-password" exact component={ChangePassword} />
+                    <Route path="/manage-complaint" exact component = {ManageComplaint}/>
+                    <Route path="/manage-detail-contract/:id">
+                      <DetailContract />
+                    </Route>
                     <Route path="/" exact component={HomePage} />
                     <Route component={PageNotFound} />
                   </Switch>
@@ -47,7 +59,16 @@ export class App extends React.PureComponent {
             <SideBarMenu />
           </div>
         ) : (
-            <AdminSignIn />
+            <Switch>
+              <Route path="/update-new-password" exact component={ForgotPassw} />
+              <Route path="/admin-sigin">
+                <AdminSignIn />
+              </Route>
+              <Route path="/">
+                <AdminSignIn />
+              </Route>
+            </Switch>
+
           )}
       </div>
     );
